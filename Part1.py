@@ -1,3 +1,4 @@
+import socket
 import subprocess
 
 
@@ -35,6 +36,33 @@ while True:
                     print(network_address + str(i) + " " + "--> " + "Live")
                 i += 1
             print("Scanning completed")
+
+        if user_command == "3":
+            host_ip = input("Enter the host IP you want to scan its ports: ")
+            start_port_number = int(input("Enter the start port number: "))
+            last_port_number = int(input("Enter the last port number: "))
+
+            popen_result = subprocess.Popen("ping -l 8 -n 2 " + host_ip, stdout=subprocess.PIPE)
+            popen_data = popen_result.communicate()[0]
+            return_code = popen_result.returncode
+            if str(return_code) != "0":
+                print("This host IP address is not alive")
+                continue
+            i = start_port_number
+            while i <= last_port_number:
+                my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                location = (host_ip, i)
+                result_of_check = my_socket.connect_ex(location)
+                if result_of_check == 0:
+                    print("Port " + str(i) + " is open\n")
+                my_socket.close()
+                i += 1
+            print("Ports scanning completed")
+
+
+
+
+
 
 
 
