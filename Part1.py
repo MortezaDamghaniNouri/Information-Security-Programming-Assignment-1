@@ -1,6 +1,7 @@
 import socket
 import subprocess
 
+import nmap
 
 while True:
     print("Enter the number of one of the following commands: ")
@@ -39,24 +40,22 @@ while True:
 
         if user_command == "3":
             host_ip = input("Enter the host IP you want to scan its ports: ")
-            start_port_number = int(input("Enter the start port number: "))
-            last_port_number = int(input("Enter the last port number: "))
+            start_port_number = input("Enter the start port number: ")
+            last_port_number = input("Enter the last port number: ")
+            print("Processing...")
+            nm = nmap.PortScanner()
+            nm.scan(host_ip, start_port_number + "-" + last_port_number)
+            for host in nm.all_hosts():
+                print('----------------------------------------------------')
+                for proto in nm[host].all_protocols():
+                    print('----------')
+                    print("Protocol: " + str(proto))
+                    ports_list = nm[host][proto].keys()
+                    for port in ports_list:
+                        print('Port : %s\tState : %s' % (port, nm[host][proto][port]['state']))
 
-            popen_result = subprocess.Popen("ping -l 8 -n 2 " + host_ip, stdout=subprocess.PIPE)
-            popen_data = popen_result.communicate()[0]
-            return_code = popen_result.returncode
-            if str(return_code) != "0":
-                print("This host IP address is not alive")
-                continue
-            i = start_port_number
-            while i <= last_port_number:
-                my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                location = (host_ip, i)
-                result_of_check = my_socket.connect_ex(location)
-                if result_of_check == 0:
-                    print("Port " + str(i) + " is open\n")
-                my_socket.close()
-                i += 1
+
+
             print("Ports scanning completed")
 
 
