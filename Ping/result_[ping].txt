@@ -1,0 +1,27 @@
+Enter the IP address or the URL you want to ping or enter 'exit' to exit: www.google.com
+
+Pinging www.google.com [216.58.209.132] with 32 bytes of data:
+Reply from 216.58.209.132: bytes=32 time=62ms TTL=112
+Reply from 216.58.209.132: bytes=32 time=61ms TTL=112
+Reply from 216.58.209.132: bytes=32 time=61ms TTL=112
+Reply from 216.58.209.132: bytes=32 time=61ms TTL=112
+
+Ping statistics for 216.58.209.132:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 61ms, Maximum = 62ms, Average = 61ms
+CompletedProcess(args='ping www.google.com', returncode=0)
+
+Enter the IP address or the URL you want to ping or enter 'exit' to exit: 216.58.209.132
+
+Pinging 216.58.209.132 with 32 bytes of data:
+Reply from 216.58.209.132: bytes=32 time=62ms TTL=112
+Reply from 216.58.209.132: bytes=32 time=62ms TTL=112
+Reply from 216.58.209.132: bytes=32 time=62ms TTL=112
+Reply from 216.58.209.132: bytes=32 time=63ms TTL=112
+
+Ping statistics for 216.58.209.132:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 62ms, Maximum = 63ms, Average = 62ms
+CompletedProcess(args='ping 216.58.209.132', returncode=0)
