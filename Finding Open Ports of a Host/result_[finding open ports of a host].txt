@@ -1,0 +1,5 @@
+Port : 5	State : filtered
+Port : 6	State : filtered
+Port : 7	State : open
+Port : 8	State : filtered
+Port : 9	State : open
